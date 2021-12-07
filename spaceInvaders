@@ -2,6 +2,9 @@ import os
 import pygame
 
 pygame.init()
+pygame.mixer.init()
+crash_sound =pygame.mixer.Sound("spaceinvaders.wav")
+
 
 width = 600
 height = 400
@@ -69,11 +72,12 @@ def displayText(text):
 while isPlaying:
     screen.blit(backround, (0, 0))
     player.draw()
-    
+    crash_sound.play(maxtime= 30)
+
     for enemy in enemies:
         enemy.draw( )
         enemy.detectCollision()
-        if enemy .y > height - 150:
+        if enemy.y > height - 150:
             displayText('GAME OVER')
 
     for laser in lasers:
